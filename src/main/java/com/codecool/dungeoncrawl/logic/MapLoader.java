@@ -25,25 +25,18 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
-                        case ' ':
-                            cell.setType(CellType.EMPTY);
-                            break;
-                        case '#':
-                            cell.setType(CellType.WALL);
-                            break;
-                        case '.':
+                        case ' ' -> cell.setType(CellType.EMPTY);
+                        case '#' -> cell.setType(CellType.WALL);
+                        case '.' -> cell.setType(CellType.FLOOR);
+                        case 's' -> {
                             cell.setType(CellType.FLOOR);
-                            break;
-                        case 's':
-                            cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
-                            break;
-                        case '@':
+                            map.setEnemy(new Skeleton(cell));
+                        }
+                        case '@' -> {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
-                            break;
-                        default:
-                            throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
+                        }
+                        default -> throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
                 }
             }
