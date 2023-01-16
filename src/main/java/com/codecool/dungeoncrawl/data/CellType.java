@@ -3,7 +3,13 @@ package com.codecool.dungeoncrawl.data;
 public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
-    WALL("wall");
+    WALL("wall"),
+
+    GRASS("grass"),
+    TREE("tree"),
+    FIRE("fire"),
+    WATER("water");
+
 
     private final String tileName;
 
