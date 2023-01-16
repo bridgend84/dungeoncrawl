@@ -25,9 +25,12 @@ public class MapLoader {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
                     switch (line.charAt(x)) {
-                        case ' ' -> cell.setType(CellType.EMPTY);
-                        case '#' -> cell.setType(CellType.WALL);
-                        case '.' -> cell.setType(CellType.FLOOR);
+                        case ' ' ->
+                                cell.setType(CellType.EMPTY);
+                        case '#' ->
+                                cell.setType(CellType.WALL);
+                        case '.' ->
+                                cell.setType(CellType.FLOOR);
                         case 's' -> {
                             cell.setType(CellType.FLOOR);
                             map.setEnemy(new Skeleton(cell));
@@ -36,22 +39,21 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                         }
-                        default -> throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
-                            break;
-                        case 'w':
+                        case 'w' -> {
                             cell.setType(CellType.WATER);
-                            break;
-                        case 'f':
+                        }
+                        case 'f' -> {
                             cell.setType(CellType.FIRE);
-                            break;
-                        case 't':
+                        }
+                        case 't' -> {
                             cell.setType(CellType.TREE);
-                            break;
-                        case 'g':
+                        }
+                        case 'g' -> {
                             cell.setType(CellType.GRASS);
-                            break;
-                        default:
+                        }
+                        default -> {
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
+                        }
                     }
                 }
             }
