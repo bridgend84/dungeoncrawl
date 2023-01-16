@@ -1,6 +1,10 @@
 package com.codecool.dungeoncrawl.data;
 
 public enum CellType {
+    GRASS("grass", true),
+    TREE("tree", false),
+    FIRE("fire", true),
+    WATER("water", false),
     EMPTY("empty", true),
     FLOOR("floor", true),
     WALL("wall", false);
