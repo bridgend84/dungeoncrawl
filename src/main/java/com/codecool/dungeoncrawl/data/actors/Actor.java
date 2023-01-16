@@ -3,20 +3,26 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
+import java.util.UUID;
+
 public abstract class Actor implements Drawable {
+    private final UUID id;
     private Cell cell;
     private int health = 10;
 
     public Actor(Cell cell) {
+        this.id = UUID.randomUUID();
         this.cell = cell;
         this.cell.setActor(this);
     }
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        cell.setActor(null);
-        nextCell.setActor(this);
-        cell = nextCell;
+        if (nextCell.canActorMoveOn()) {
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
     }
 
     public int getHealth() {
@@ -33,5 +39,9 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
