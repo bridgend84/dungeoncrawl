@@ -2,11 +2,13 @@ package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Actor;
 
+import java.util.Objects;
+
 public class Cell implements Drawable {
     private CellType type;
     private Actor actor;
-    private GameMap gameMap;
-    private int x, y;
+    private final GameMap gameMap;
+    private final int x, y;
 
     public Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
@@ -40,11 +42,32 @@ public class Cell implements Drawable {
         return type.getTileName();
     }
 
+    public boolean canActorMoveOn() {
+        return getType().getCanPlayerMoveOn() &&
+                gameMap
+                        .getEnemies()
+                        .stream()
+                        .noneMatch(actor -> actor.getX() == this.getX() && actor.getY() == this.getY());
+    }
+
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cell cell = (Cell) o;
+        return x == cell.x && y == cell.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
