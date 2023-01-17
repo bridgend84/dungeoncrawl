@@ -7,7 +7,9 @@ public enum CellType {
     WATER("water", false),
     EMPTY("empty", true),
     FLOOR("floor", true),
-    WALL("wall", false);
+    WALL("wall", false),
+    DOOR("door", false),
+    DOOR_OPEN("door-open", true);
 
     private final String tileName;
     private final boolean canPlayerMoveOn;

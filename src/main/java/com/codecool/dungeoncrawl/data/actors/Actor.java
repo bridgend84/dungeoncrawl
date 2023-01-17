@@ -26,23 +26,24 @@ public abstract class Actor implements Drawable {
             nextCell.setActor(this);
             cell = nextCell;
         }
-        if (nextCell.isEnemyOnCell() != null) {
-            attackEnemy(nextCell.isEnemyOnCell(), nextCell);
+        if (nextCell.getActor() != null && !(nextCell.getActor().equals(this))) {
+            attackEnemy(nextCell.getActor());
         }
     }
 
-    private void attackEnemy(Actor enemy, Cell enemyCell) {
+    private void attackEnemy(Actor enemy) {
         enemy.takeDamage(this.strength);
         this.takeDamage(enemy.strength);
-        enemyCell.checkAllEnemyHealth();
     }
 
     public int getHealth() {
         return health;
     }
+
     public int getStrength() {
         return strength;
     }
+
     public Cell getCell() {
         return cell;
     }

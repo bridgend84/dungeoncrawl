@@ -1,23 +1,19 @@
 package com.codecool.dungeoncrawl.data;
 
-import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
+import com.codecool.dungeoncrawl.data.items.Item;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 
-public class GameMap {
+public class GameMap implements GameMapModifier {
     private final int width;
     private final int height;
     private final Cell[][] cells;
     private Player player;
-    private Set<Actor> enemies;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
         this.height = height;
-        this.enemies = new HashSet<>();
         cells = new Cell[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -34,16 +30,21 @@ public class GameMap {
         this.player = player;
     }
 
-    public void setEnemy(Actor actor) {
-        enemies.add(actor);
-    }
-
     public Player getPlayer() {
         return player;
     }
 
-    public Set<Actor> getEnemies() {
-        return enemies;
+    public void removeItem(Item item) {
+        cells[item.getX()][item.getY()].setItem(null);
+    }
+
+    @Override
+    public void removeDeadActors() {
+        Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .filter(cell -> cell.getActor() != null)
+                .filter(cell -> cell.getActor().getHealth() <= 0)
+                .forEach(cell -> cell.setActor(null));
     }
 
     public int getWidth() {
@@ -52,9 +53,5 @@ public class GameMap {
 
     public int getHeight() {
         return height;
-    }
-
-    public void killEnemies() {
-        this.enemies = enemies.stream().filter(actor -> actor.getHealth() > 0).collect(Collectors.toSet());
     }
 }

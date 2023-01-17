@@ -44,8 +44,11 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
+        //update method from game logic to be implemented before refresh
+        logic.getMap().removeDeadActors();
         refresh();
     }
+
 
     public void refresh() {
         context.setFill(Color.BLACK);
@@ -55,6 +58,8 @@ public class UI {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
+                } else if (cell.getItem() != null) {
+                    Tiles.drawTile(context, cell.getItem(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
