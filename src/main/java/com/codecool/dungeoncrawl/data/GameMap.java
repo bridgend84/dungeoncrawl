@@ -5,14 +5,14 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GameMap {
     private final int width;
     private final int height;
     private final Cell[][] cells;
-
     private Player player;
-    private final Set<Actor> enemies;
+    private Set<Actor> enemies;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -52,5 +52,9 @@ public class GameMap {
 
     public int getHeight() {
         return height;
+    }
+
+    public void killEnemies() {
+        this.enemies = enemies.stream().filter(actor -> actor.getHealth() > 0).collect(Collectors.toSet());
     }
 }

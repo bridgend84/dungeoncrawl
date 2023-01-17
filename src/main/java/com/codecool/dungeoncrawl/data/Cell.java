@@ -50,12 +50,24 @@ public class Cell implements Drawable {
                         .noneMatch(actor -> actor.getX() == this.getX() && actor.getY() == this.getY());
     }
 
+    public Actor isEnemyOnCell() {
+        return gameMap
+                .getEnemies()
+                .stream()
+                .filter(actor -> actor.getX() == this.getX() && actor.getY() == this.getY())
+                .findAny()
+                .orElse(null);
+    }
+
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
+    }
+    public void checkAllEnemyHealth() {
+        gameMap.killEnemies();
     }
 
     @Override
