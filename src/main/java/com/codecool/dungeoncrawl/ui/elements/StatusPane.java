@@ -11,7 +11,6 @@ public class StatusPane {
     public static final int RIGHT_PANEL_WIDTH = 200;
     public static final int RIGHT_PANEL_PADDING = 10;
     private GridPane ui;
-    private Label healthTextLabel;
     private Label healthValueLabel;
 
     private Label inventoryLabel;
@@ -19,7 +18,6 @@ public class StatusPane {
 
     public StatusPane() {
         ui = new GridPane();
-        healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
         inventoryList = new ListView<>();
         inventoryLabel = new Label("Inventory: ");
@@ -30,11 +28,11 @@ public class StatusPane {
         ui.setPrefWidth(RIGHT_PANEL_WIDTH);
         ui.setPadding(new Insets(RIGHT_PANEL_PADDING));
 
-        ui.add(healthTextLabel, 0, 0);
-        ui.add(healthValueLabel, 1, 0);
+        ui.add(healthValueLabel, 0, 0);
         ui.add(inventoryLabel, 0, 1);
         ui.add(inventoryList, 0, 2);
         inventoryList.setPrefHeight(100);
+        inventoryList.setPrefWidth(120);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -42,7 +40,7 @@ public class StatusPane {
     }
 
     public void setHealthValue(String text) {
-        healthValueLabel.setText(text);
+        healthValueLabel.setText("Health: " + text);
     }
 
     public void setInventoryList(ObservableList<String> playerInventoryList) {

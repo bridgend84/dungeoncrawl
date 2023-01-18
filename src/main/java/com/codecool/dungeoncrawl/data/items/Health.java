@@ -2,12 +2,12 @@ package com.codecool.dungeoncrawl.data.items;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class Weapon extends Item {
-    private final int damage;
+public class Health extends Item {
+    private int health;
 
-    public Weapon(ItemType itemType, Cell cell) {
+    public Health(ItemType itemType, Cell cell) {
         super(itemType, cell);
-        this.damage = itemType.getDamage();
+        this.health = itemType.getHealth();
     }
 
     @Override
@@ -15,7 +15,7 @@ public class Weapon extends Item {
         return getItemType().getName();
     }
 
-    public int getDamage() {
-        return damage;
+    public int getHealth() {
+        return health;
     }
 }

@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.data.items.Health;
 import com.codecool.dungeoncrawl.data.items.Item;
 import com.codecool.dungeoncrawl.data.items.ItemType;
 import com.codecool.dungeoncrawl.data.items.Weapon;
@@ -50,6 +51,8 @@ public class Player extends Actor {
         Item currentItem = getCell().getItem();
         if (currentItem instanceof Weapon currentWeapon) {
             replaceWeapon(currentWeapon);
+        } else if (currentItem instanceof Health health) {
+            drinkPotion(health);
         } else {
             addItem(currentItem);
         }
@@ -87,6 +90,12 @@ public class Player extends Actor {
                 "You have to get a computer to hack this door!",
                 ButtonType.OK);
         alert.showAndWait();
+    }
+
+    public void drinkPotion(Health health) {
+        int potion = health.getHealth();
+        this.setHealth(getHealth() + potion);
+        getCell().removeItem(getCell().getItem());
     }
 
 }
