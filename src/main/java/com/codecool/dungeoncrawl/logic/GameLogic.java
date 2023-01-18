@@ -2,6 +2,9 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.items.Item;
+
+import java.util.Set;
 
 public class GameLogic {
     private GameMap map;
@@ -27,6 +30,10 @@ public class GameLogic {
 
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
+    }
+
+    public Set<Item> getPlayerInventory() {
+        return map.getPlayer().getItems();
     }
 
     public GameMap getMap() {

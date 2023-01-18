@@ -1,7 +1,9 @@
 package com.codecool.dungeoncrawl.ui.elements;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -12,10 +14,15 @@ public class StatusPane {
     private Label healthTextLabel;
     private Label healthValueLabel;
 
+    private Label inventoryLabel;
+    ListView<String> inventoryList;
+
     public StatusPane() {
         ui = new GridPane();
         healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
+        inventoryList = new ListView<>();
+        inventoryLabel = new Label("Inventory: ");
     }
 
     public BorderPane build() {
@@ -25,6 +32,8 @@ public class StatusPane {
 
         ui.add(healthTextLabel, 0, 0);
         ui.add(healthValueLabel, 1, 0);
+        ui.add(inventoryLabel, 0, 1);
+        ui.add(inventoryList, 0, 2);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -33,5 +42,9 @@ public class StatusPane {
 
     public void setHealthValue(String text) {
         healthValueLabel.setText(text);
+    }
+
+    public void setInventoryList(ObservableList<String> playerInventoryList) {
+        inventoryList.setItems(playerInventoryList);
     }
 }

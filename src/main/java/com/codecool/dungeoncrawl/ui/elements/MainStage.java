@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.ui.elements;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.BorderPane;
@@ -19,6 +20,7 @@ public class MainStage {
         BorderPane borderPane = statusPane.build();
         borderPane.setCenter(canvas);
         Scene scene = new Scene(borderPane);
+        borderPane.requestFocus();
         return scene;
     }
 
@@ -29,4 +31,10 @@ public class MainStage {
     public void setHealthLabelText(String text) {
         this.statusPane.setHealthValue(text);
     }
+
+    public void setPlayerInventoryList(ObservableList<String> playerInventoryList) {
+        this.statusPane.setInventoryList(playerInventoryList);
+    }
+
+
 }
