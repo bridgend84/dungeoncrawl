@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
+import com.codecool.dungeoncrawl.data.actors.GiantSkeleton;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Computer;
@@ -42,6 +43,10 @@ public class MapLoader {
                         case 's' -> {
                             cell.setType(CellType.FLOOR);
                             cell.setActor(new Skeleton(cell));
+                        }
+                        case 'S' -> {
+                            cell.setType(CellType.FLOOR);
+                            cell.setActor(new GiantSkeleton(cell));
                         }
                         case 'G' -> {
                             cell.setType(CellType.FLOOR);

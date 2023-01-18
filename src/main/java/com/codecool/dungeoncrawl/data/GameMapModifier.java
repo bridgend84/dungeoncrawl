@@ -10,4 +10,5 @@ public interface GameMapModifier {
 
     Cell getCell(int dx, int dy);
 
+    void moveMonsters();
 }

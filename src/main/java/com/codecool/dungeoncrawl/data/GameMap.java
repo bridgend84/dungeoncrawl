@@ -26,6 +26,15 @@ public class GameMap implements GameMapModifier {
         return cells[x < 0 ? 0 : Math.min(x, width - 1)][y < 0 ? 0 : Math.min(y, height - 1)];
     }
 
+    @Override
+    public void moveMonsters() {
+        Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .filter(cell -> cell.getActor() != null)
+                .filter(cell -> cell.getActor().isRandomMovable())
+                .forEach(cell -> cell.getActor().randomMove());
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }

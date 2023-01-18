@@ -18,7 +18,7 @@ public class Player extends Actor {
     private final Set<Item> items;
 
     public Player(Cell cell) {
-        super(cell, PLAYER_HEALTH, PLAYER_STRENGTH);
+        super(cell, PLAYER_HEALTH, PLAYER_STRENGTH, false);
         this.items = new HashSet<>();
     }
 

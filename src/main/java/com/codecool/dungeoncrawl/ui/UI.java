@@ -15,8 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Set;
+import java.util.TimerTask;
 
-public class UI {
+public class UI extends TimerTask {
     private Canvas canvas;
     private GraphicsContext context;
 
@@ -47,7 +48,6 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
-        //update method from game logic to be implemented before refresh
         logic.getMap().removeDeadActors();
         refresh();
     }
@@ -80,5 +80,12 @@ public class UI {
             inventoryList.add(item.getTileName());
         }
         return inventoryList;
+    }
+
+    @Override
+    public void run() {
+        logic.getMap().removeDeadActors();
+        logic.getMap().moveMonsters();
+        refresh();
     }
 }
