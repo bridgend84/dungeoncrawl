@@ -65,6 +65,11 @@ public class MapLoader {
                             Item weapon = new Weapon(ItemType.INGRAM, cell);
                             cell.setItem(weapon);
                         }
+                        case 'D' -> {
+                            cell.setType(CellType.FLOOR);
+                            Item weapon = new Weapon(ItemType.SHOTGUN, cell);
+                            cell.setItem(weapon);
+                        }
                         case 'c' -> {
                             cell.setType(CellType.FLOOR);
                             Item computer = new Computer(ItemType.COMPUTER, cell);

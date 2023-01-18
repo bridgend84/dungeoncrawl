@@ -44,6 +44,18 @@ public abstract class Actor implements Drawable {
         return strength;
     }
 
+    public void incrementStrength(int strength) {
+        this.strength += strength;
+    }
+
+    public void decreaseStrength(int strength) {
+        if (this.strength - strength < 0) {
+            this.strength = 0;
+        } else {
+            this.strength -= strength;
+        }
+    }
+
     public Cell getCell() {
         return cell;
     }
@@ -56,11 +68,11 @@ public abstract class Actor implements Drawable {
         return cell.getY();
     }
 
-    public UUID getId() {
-        return id;
-    }
-
     public void takeDamage(int damage) {
-        this.health -= damage;
+        if (this.health - damage < 0) {
+            this.health = 0;
+        } else {
+            this.health -= damage;
+        }
     }
 }

@@ -8,10 +8,10 @@ import java.util.UUID;
 
 public abstract class Item implements Drawable {
 
-    private ItemType itemType;
+    private final ItemType itemType;
 
     private final UUID id;
-    private Cell cell;
+    private final Cell cell;
 
     public Item(ItemType itemType, Cell cell) {
         this.itemType = itemType;
@@ -25,6 +25,10 @@ public abstract class Item implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public ItemType getItemType() {
+        return itemType;
     }
 
     @Override
