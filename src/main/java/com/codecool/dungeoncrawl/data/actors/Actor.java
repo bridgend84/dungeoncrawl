@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.Drawable;
 
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public abstract class Actor implements Drawable {
@@ -10,13 +12,17 @@ public abstract class Actor implements Drawable {
     private Cell cell;
     private int health;
     private int strength;
+    protected Random random;
+    private boolean isRandomMovable;
 
-    public Actor(Cell cell, int health, int strength) {
+    public Actor(Cell cell, int health, int strength, boolean isRandomMovable) {
         this.id = UUID.randomUUID();
         this.cell = cell;
         this.cell.setActor(this);
         this.health = health;
         this.strength = strength;
+        this.random = new Random();
+        this.isRandomMovable = isRandomMovable;
     }
 
     public void move(int dx, int dy) {
@@ -29,6 +35,12 @@ public abstract class Actor implements Drawable {
         if (nextCell.getActor() != null && !(nextCell.getActor().equals(this))) {
             attackEnemy(nextCell.getActor());
         }
+    }
+
+    public void randomMove() {
+        List<List<Integer>> directions = List.of(List.of(0,1), List.of(0,-1), List.of(1,0), List.of(-1, 0));
+        List<Integer> currentMove = directions.get(random.nextInt(directions.size()));
+        move(currentMove.get(0), currentMove.get(1));
     }
 
     private void attackEnemy(Actor enemy) {
@@ -74,5 +86,9 @@ public abstract class Actor implements Drawable {
         } else {
             this.health -= damage;
         }
+    }
+
+    public boolean isRandomMovable() {
+        return isRandomMovable;
     }
 }

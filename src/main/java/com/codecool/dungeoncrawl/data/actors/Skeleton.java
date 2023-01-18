@@ -6,7 +6,7 @@ public class Skeleton extends Actor {
     public static final int SKELETON_HEALTH = 10;
     public static final int SKELETON_STRENGTH = 5;
     public Skeleton(Cell cell) {
-        super(cell, SKELETON_HEALTH, SKELETON_STRENGTH);
+        super(cell, SKELETON_HEALTH, SKELETON_STRENGTH, true);
     }
     @Override
     public String getTileName() {
