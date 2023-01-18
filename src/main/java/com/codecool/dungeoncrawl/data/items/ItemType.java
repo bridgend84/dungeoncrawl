@@ -5,12 +5,19 @@ public enum ItemType {
     COMPUTER("computer"),
     INGRAM("ingram", 10),
     SHOTGUN("shotgun", 15),
-    DUMMY_WEAPON("dummy_weapon",0);
+    DUMMY_WEAPON("dummy_weapon", 0),
+    HEALTH(20, "health");
 
     private int damage;
     private final String name;
+    private int health;
 
-    ItemType(String name){
+    ItemType(int health, String name) {
+        this.name = name;
+        this.health = health;
+    }
+
+    ItemType(String name) {
         this.name = name;
     }
 
@@ -22,5 +29,12 @@ public enum ItemType {
     public int getDamage() {
         return damage;
     }
-    public String getName() { return name; }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
 }

@@ -91,4 +91,8 @@ public abstract class Actor implements Drawable {
     public boolean isRandomMovable() {
         return isRandomMovable;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
 }
