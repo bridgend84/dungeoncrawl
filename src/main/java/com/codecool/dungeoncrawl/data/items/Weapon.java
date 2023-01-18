@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 
 public class Weapon extends Item {
 
-    private int damage;
+    private final int damage;
 
     public Weapon(ItemType itemType, Cell cell) {
         super(itemType, cell);
@@ -13,6 +13,10 @@ public class Weapon extends Item {
 
     @Override
     public String getTileName() {
-        return "ingram";
+        return getItemType().getName();
+    }
+
+    public int getDamage() {
+        return damage;
     }
 }

@@ -9,7 +9,7 @@
 .#w#.#w#....#wwwww#.
 #fw#..#......#wwwww#
 #fff#.....i...#wwww#
-#fffw#....@....#www#
+#fffw#...D@....#www#
 #ttwww#...c..#..#ww#
 .#tttww#....#w#.#w#.
 ..#tttww#..#ww#.##..
