@@ -1,8 +1,12 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.items.ItemType;
 import com.codecool.dungeoncrawl.data.items.Weapon;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +32,18 @@ public class Player extends Actor {
         if (getCell().getItem() != null) {
             pickUpItem();
         }
+        Cell nextCell = getCell().getNeighbor(dx, dy);
+        if (nextCell.getType().equals(CellType.DOOR)) {
+            if (items.stream().anyMatch(item -> item.getItemType().equals(ItemType.COMPUTER))) {
+                openTheDoor(nextCell);
+            } else {
+                displayAlert();
+            }
+        }
+    }
+
+    public void openTheDoor(Cell doorCell) {
+        doorCell.setType(CellType.DOOR_OPEN);
     }
 
     public void pickUpItem() {
@@ -64,4 +80,13 @@ public class Player extends Actor {
     public Set<Item> getItems() {
         return items;
     }
+
+    public void displayAlert() {
+        Alert alert = new Alert(
+                Alert.AlertType.NONE,
+                "You have to get a computer to hack this door!",
+                ButtonType.OK);
+        alert.showAndWait();
+    }
+
 }

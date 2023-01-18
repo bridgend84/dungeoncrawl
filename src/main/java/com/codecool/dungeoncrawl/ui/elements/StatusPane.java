@@ -34,6 +34,7 @@ public class StatusPane {
         ui.add(healthValueLabel, 1, 0);
         ui.add(inventoryLabel, 0, 1);
         ui.add(inventoryList, 0, 2);
+        inventoryList.setPrefHeight(100);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
