@@ -23,7 +23,7 @@ public class GameMap implements GameMapModifier {
     }
 
     public Cell getCell(int x, int y) {
-        return cells[x][y];
+        return cells[x < 0 ? 0 : Math.min(x, width - 1)][y < 0 ? 0 : Math.min(y, height - 1)];
     }
 
     public void setPlayer(Player player) {
