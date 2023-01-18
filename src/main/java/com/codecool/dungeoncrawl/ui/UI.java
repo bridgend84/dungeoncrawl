@@ -1,9 +1,12 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.items.Item;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -66,5 +69,16 @@ public class UI {
             }
         }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setPlayerInventoryList(getPlayerInventoryAsStringList());
+    }
+
+    //move this to main stage
+    public ObservableList<String> getPlayerInventoryAsStringList() {
+        ObservableList<String> inventoryList = FXCollections.observableArrayList();
+        Set<Item> inventory = logic.getPlayerInventory();
+        for (Item item : inventory) {
+            inventoryList.add(item.getTileName());
+        }
+        return inventoryList;
     }
 }

@@ -34,8 +34,7 @@ public class Player extends Actor {
         Item currentItem = getCell().getItem();
         if (currentItem instanceof Weapon currentWeapon) {
             replaceWeapon(currentWeapon);
-        }
-        else {
+        } else {
             addItem(currentItem);
         }
     }
@@ -50,8 +49,7 @@ public class Player extends Actor {
     }
 
     public void replaceWeapon(Weapon weapon) {
-        items
-                .stream()
+        items.stream()
                 .filter(item -> item instanceof Weapon)
                 .map(item -> (Weapon) item)
                 .findFirst()
@@ -61,5 +59,9 @@ public class Player extends Actor {
                 });
         addItem(weapon);
         this.incrementStrength(weapon.getDamage());
+    }
+
+    public Set<Item> getItems() {
+        return items;
     }
 }
