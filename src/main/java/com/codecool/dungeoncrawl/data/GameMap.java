@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.items.Item;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class GameMap implements GameMapModifier {
     private final int width;
@@ -33,6 +34,23 @@ public class GameMap implements GameMapModifier {
                 .filter(cell -> cell.getActor() != null)
                 .filter(cell -> cell.getActor().isRandomMovable())
                 .forEach(cell -> cell.getActor().randomMove());
+    }
+
+    @Override
+    public boolean isAllMonstersDead() {
+        return Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .map(Cell::getActor)
+                .filter(Objects::nonNull)
+                .allMatch(actor -> actor instanceof Player);
+    }
+
+    @Override
+    public boolean isPlayerDead() {
+        return Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .map(Cell::getActor)
+                .noneMatch(actor -> actor instanceof Player);
     }
 
     public void setPlayer(Player player) {
