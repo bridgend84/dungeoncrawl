@@ -7,7 +7,7 @@ import com.codecool.dungeoncrawl.data.items.Item;
 import java.util.Set;
 
 public class GameLogic {
-    private GameMap map;
+    private final GameMap map;
 
     public GameLogic() {
         this.map = MapLoader.loadMap();
@@ -22,6 +22,7 @@ public class GameLogic {
     }
 
     public void setup() {
+        map.setMovableMonsters();
     }
 
     public Cell getCell(int x, int y) {
