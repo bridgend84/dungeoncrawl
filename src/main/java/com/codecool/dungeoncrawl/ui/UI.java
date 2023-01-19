@@ -16,11 +16,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.animation.*;
+import javafx.util.Duration;
 
 import java.util.Set;
-import java.util.TimerTask;
 
-public class UI extends TimerTask {
+public class UI {
     private final Canvas canvas;
     private final GraphicsContext context;
     private final MainStage mainStage;
@@ -95,11 +96,13 @@ public class UI extends TimerTask {
         alert.showAndWait();
     }
 
-    @Override
-    public void run() {
-        logic.getMap().removeDeadActors();
-        logic.getMap().moveMonsters();
-        refresh();
+    public void moveMonsters() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), ev -> {
+            logic.getMap().moveMonsters();
+            refresh();
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void checkWinLoseCondition() {

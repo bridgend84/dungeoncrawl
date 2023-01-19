@@ -1,18 +1,22 @@
 package com.codecool.dungeoncrawl.data;
 
+import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.items.Cat;
 import com.codecool.dungeoncrawl.data.items.Item;
 import com.codecool.dungeoncrawl.data.items.ItemType;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class GameMap implements GameMapModifier {
     private final int width;
     private final int height;
     private final Cell[][] cells;
     private Player player;
+    private final Set<Actor> movableMonsters;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -23,19 +27,29 @@ public class GameMap implements GameMapModifier {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }
+        this.movableMonsters = new HashSet<>();
     }
 
     public Cell getCell(int x, int y) {
         return cells[x < 0 ? 0 : Math.min(x, width - 1)][y < 0 ? 0 : Math.min(y, height - 1)];
     }
 
-    @Override
-    public void moveMonsters() {
+    public void addMovableMonsters(Actor actor) {
+        movableMonsters.add(actor);
+    }
+
+    public void setMovableMonsters() {
         Arrays.stream(cells)
                 .flatMap(Arrays::stream)
-                .filter(cell -> cell.getActor() != null)
-                .filter(cell -> cell.getActor().isRandomMovable())
-                .forEach(cell -> cell.getActor().randomMove());
+                .map(Cell::getActor)
+                .filter(Objects::nonNull)
+                .filter(Actor::isRandomMovable)
+                .forEach(this::addMovableMonsters);
+    }
+
+    @Override
+    public void moveMonsters() {
+        movableMonsters.forEach(Actor::randomMove);
     }
 
     @Override
