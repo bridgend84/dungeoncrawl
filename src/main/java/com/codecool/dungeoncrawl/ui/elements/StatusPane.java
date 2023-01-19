@@ -15,10 +15,12 @@ public class StatusPane {
     private Label inventoryLabel;
     ListView<String> inventoryList;
     private Label passwordText;
+    private Label strengthValue;
 
     public StatusPane() {
         ui = new GridPane();
         healthValueLabel = new Label();
+        strengthValue = new Label();
         passwordText = new Label("You can find the password\nfor the doors on the\ncards on the map! ;-)");
         inventoryList = new ListView<>();
         inventoryLabel = new Label("Inventory: ");
@@ -30,11 +32,12 @@ public class StatusPane {
         ui.setPadding(new Insets(RIGHT_PANEL_PADDING));
 
         ui.add(healthValueLabel, 0, 0);
-        ui.add(inventoryLabel, 0, 1);
-        ui.add(inventoryList, 0, 2);
-        ui.add(passwordText, 0, 3);
+        ui.add(strengthValue, 0, 1);
+        ui.add(inventoryLabel, 0, 2);
+        ui.add(inventoryList, 0, 3);
+        ui.add(passwordText, 0, 4);
         inventoryList.setPrefHeight(180);
-        inventoryList.setPrefWidth(120);
+        inventoryList.setPrefWidth(180);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -43,6 +46,10 @@ public class StatusPane {
 
     public void setHealthValue(String text) {
         healthValueLabel.setText("Health: " + text);
+    }
+
+    public void setStrengthValue(String text) {
+        strengthValue.setText("Strength: " + text);
     }
 
     public void setInventoryList(ObservableList<String> playerInventoryList) {

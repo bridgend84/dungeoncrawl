@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.items.Weapon;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
@@ -69,6 +70,7 @@ public class UI extends TimerTask {
             }
         }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setStrenghtLabelText(logic.getPlayerStrenght());
         mainStage.setPlayerInventoryList(getPlayerInventoryAsStringList());
     }
 
@@ -76,7 +78,11 @@ public class UI extends TimerTask {
         ObservableList<String> inventoryList = FXCollections.observableArrayList();
         Set<Item> inventory = logic.getPlayerInventory();
         for (Item item : inventory) {
-            inventoryList.add(item.getTileName());
+            if (item instanceof Weapon) {
+                inventoryList.add(item.getTileName() + " (Damage: " + ((Weapon) item).getDamage() + ")");
+            } else {
+                inventoryList.add(item.getTileName());
+            }
         }
         return inventoryList;
     }
@@ -100,7 +106,7 @@ public class UI extends TimerTask {
         if (logic.getMap().isPlayerDead()) {
             alert("GAME OVER");
         } else if (logic.getMap().isAllMonstersDead() || logic.getMap().isAllCatsCollected()) {
-            alert("WIN!");
+            alert("WIN! Bye-bye OOP module! <3");
         }
     }
 }
