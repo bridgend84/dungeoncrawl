@@ -6,13 +6,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.util.Set;
-import java.util.Timer;
 
 public class Game extends Application {
     private UI ui;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
-    Timer timer = new Timer();
 
     public static void main(String[] args) {
         launch(args);
@@ -26,6 +24,6 @@ public class Game extends Application {
         ui.setUpPain(primaryStage);
         primaryStage.setTitle("Dungeon Crawl v.01 by");
         primaryStage.show();
-        timer.schedule(ui, 0, 500);
+        ui.moveMonsters();
     }
 }
