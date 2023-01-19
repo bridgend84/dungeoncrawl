@@ -40,9 +40,8 @@ public class Player extends Actor {
         Cell nextCell = getCell().getNeighbor(dx, dy);
         if (nextCell.getType().equals(CellType.DOOR)) {
             if (items.stream().anyMatch(item -> item.getItemType().equals(ItemType.COMPUTER))) {
-                checkPassword();
                 while (!checkPassword().equalsIgnoreCase(DOOR_PASS)) {
-                    checkPassword();
+                    System.out.println("nono");
                 }
                 openTheDoor(nextCell);
             } else {
@@ -117,7 +116,7 @@ public class Player extends Actor {
     }
 
     public String checkPassword() {
-        TextInputDialog askForPassword = new TextInputDialog("***");
+        TextInputDialog askForPassword = new TextInputDialog();
         askForPassword.setTitle("-- Door hacking --");
         askForPassword.setHeaderText("Enter door key:");
         Optional<String> result = askForPassword.showAndWait();

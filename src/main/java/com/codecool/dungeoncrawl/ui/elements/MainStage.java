@@ -32,6 +32,10 @@ public class MainStage {
         this.statusPane.setHealthValue(text);
     }
 
+    public void setStrenghtLabelText(String text) {
+        this.statusPane.setStrengthValue(text);
+    }
+
     public void setPlayerInventoryList(ObservableList<String> playerInventoryList) {
         this.statusPane.setInventoryList(playerInventoryList);
     }

@@ -2,10 +2,10 @@ package com.codecool.dungeoncrawl.data.items;
 
 public enum ItemType {
 
-    COMPUTER("computer"),
-    INGRAM("ingram"),
-    SHOTGUN("shotgun"),
-    HEALTH("health"),
+    COMPUTER("Computer"),
+    INGRAM("Ingram gun"),
+    SHOTGUN("Shotgun"),
+    HEALTH("Health potion (Beer)"),
     CAT_TRICKY("Tricky"),
     CAT_BOGYO("Bogyó"),
     CAT_MASNI("Masni"),
