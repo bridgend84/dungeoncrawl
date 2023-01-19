@@ -22,7 +22,7 @@ public class Game extends Application {
         this.logic = new GameLogic();
         this.ui = new UI(logic, keyHandlers);
         ui.setUpPain(primaryStage);
-        primaryStage.setTitle("Dungeon Crawl v.01 by");
+        primaryStage.setTitle("Dungeon Crawl v.01 by Coffee Break Team");
         primaryStage.show();
         ui.moveMonsters();
     }
