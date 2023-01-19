@@ -104,7 +104,7 @@ public class MapLoader {
                         }
                         case 'C' -> {
                             cell.setType(CellType.FLOOR);
-                            Item cat = new Cat(ItemType.CAT, cell);
+                            Item cat = new Cat(ItemType.CAT_TRICKY, cell);
                             cell.setItem(cat);
                         }
                         case '&' -> {
@@ -112,6 +112,30 @@ public class MapLoader {
                         }
                         case 'P' -> {
                             cell.setType(CellType.PURPLE_FLOOR);
+                        }
+                        case '5' -> {
+                            cell.setType(CellType.FIVE);
+                        }
+                        case '7' -> {
+                            cell.setType(CellType.SEVEN);
+                        }
+                        case '8' -> {
+                            cell.setType(CellType.EIGHT);
+                        }
+                        case 'b' -> {
+                            cell.setType(CellType.FLOOR);
+                            Item bogyo = new Cat(ItemType.CAT_BOGYO, cell);
+                            cell.setItem(bogyo);
+                        }
+                        case 'M' -> {
+                            cell.setType(CellType.FLOOR);
+                            Item masni = new Cat(ItemType.CAT_MASNI, cell);
+                            cell.setItem(masni);
+                        }
+                        case 'N' -> {
+                            cell.setType(CellType.FLOOR);
+                            Item nyafi = new Cat(ItemType.CAT_NYAFI, cell);
+                            cell.setItem(nyafi);
                         }
                         default -> {
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

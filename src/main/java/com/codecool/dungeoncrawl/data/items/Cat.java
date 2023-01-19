@@ -8,8 +8,4 @@ public class Cat extends Item{
         super(itemType, cell);
     }
 
-    @Override
-    public String getTileName() {
-        return "cat";
-    }
 }
