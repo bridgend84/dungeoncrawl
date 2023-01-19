@@ -69,12 +69,12 @@ public class MapLoader {
                         }
                         case 'i' -> {
                             cell.setType(CellType.FLOOR);
-                            Item weapon = new Weapon(ItemType.INGRAM, cell);
+                            Item weapon = new Ingram(cell);
                             cell.setItem(weapon);
                         }
                         case 'D' -> {
                             cell.setType(CellType.FLOOR);
-                            Item weapon = new Weapon(ItemType.SHOTGUN, cell);
+                            Item weapon = new Shotgun(cell);
                             cell.setItem(weapon);
                         }
                         case 'c' -> {
@@ -99,7 +99,7 @@ public class MapLoader {
                         }
                         case 'H' -> {
                             cell.setType(CellType.FLOOR);
-                            Item health = new Health(ItemType.HEALTH, cell);
+                            Item health = new Health(cell);
                             cell.setItem(health);
                         }
                         case 'C' -> {

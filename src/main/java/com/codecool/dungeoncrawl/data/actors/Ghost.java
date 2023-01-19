@@ -10,6 +10,19 @@ public class Ghost extends Actor {
     }
 
     @Override
+    public void move(int dx, int dy) {
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        if (nextCell.getActor() == null) {
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
+        if (nextCell.getActor() != null && !(nextCell.getActor().equals(this))) {
+            attackEnemy(nextCell.getActor());
+        }
+    }
+
+    @Override
     public String getTileName() {
         return "ghost";
     }

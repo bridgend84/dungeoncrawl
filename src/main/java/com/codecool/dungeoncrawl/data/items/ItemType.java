@@ -3,37 +3,17 @@ package com.codecool.dungeoncrawl.data.items;
 public enum ItemType {
 
     COMPUTER("computer"),
-    INGRAM("ingram", 10),
-    SHOTGUN("shotgun", 15),
-    HEALTH(20, "health"),
-    CAT(5, "cat");
-    private int damage;
-    private final String name;
-    private int health;
+    INGRAM("ingram"),
+    SHOTGUN("shotgun"),
+    HEALTH("health");
 
-    ItemType(int health, String name) {
-        this.name = name;
-        this.health = health;
-    }
+    private final String name;
 
     ItemType(String name) {
         this.name = name;
     }
 
-    ItemType(String name, int damage) {
-        this.name = name;
-        this.damage = damage;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public int getHealth() {
-        return health;
     }
 }

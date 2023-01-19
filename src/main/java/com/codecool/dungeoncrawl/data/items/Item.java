@@ -7,9 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Item implements Drawable {
-
     private final ItemType itemType;
-
     private final UUID id;
     private final Cell cell;
 
@@ -29,6 +27,11 @@ public abstract class Item implements Drawable {
 
     public ItemType getItemType() {
         return itemType;
+    }
+
+    @Override
+    public String getTileName() {
+        return getItemType().getName();
     }
 
     @Override
