@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -18,12 +20,12 @@ import java.util.Set;
 import java.util.TimerTask;
 
 public class UI extends TimerTask {
-    private Canvas canvas;
-    private GraphicsContext context;
+    private final Canvas canvas;
+    private final GraphicsContext context;
 
-    private MainStage mainStage;
-    private GameLogic logic;
-    private Set<KeyHandler> keyHandlers;
+    private final MainStage mainStage;
+    private final GameLogic logic;
+    private final Set<KeyHandler> keyHandlers;
 
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
@@ -50,6 +52,7 @@ public class UI extends TimerTask {
         }
         logic.getMap().removeDeadActors();
         refresh();
+        checkWinLoseCondition();
     }
 
 
@@ -82,10 +85,27 @@ public class UI extends TimerTask {
         return inventoryList;
     }
 
+    private void alert(String message) {
+        Alert alert = new Alert(
+                Alert.AlertType.NONE,
+                message,
+                ButtonType.OK);
+        alert.showAndWait();
+    }
+
     @Override
     public void run() {
         logic.getMap().removeDeadActors();
         logic.getMap().moveMonsters();
         refresh();
+    }
+
+    private void checkWinLoseCondition() {
+        if (logic.getMap().isPlayerDead()) {
+            alert("GAME OVER");
+        }
+        else if (logic.getMap().isAllMonstersDead()) {
+            alert("WIN!");
+        }
     }
 }

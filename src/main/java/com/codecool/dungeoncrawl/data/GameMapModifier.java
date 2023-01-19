@@ -11,4 +11,6 @@ public interface GameMapModifier {
     Cell getCell(int dx, int dy);
 
     void moveMonsters();
+    boolean isAllMonstersDead();
+    boolean isPlayerDead();
 }
