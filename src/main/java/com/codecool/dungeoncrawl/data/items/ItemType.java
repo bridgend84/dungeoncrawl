@@ -5,9 +5,8 @@ public enum ItemType {
     COMPUTER("computer"),
     INGRAM("ingram", 10),
     SHOTGUN("shotgun", 15),
-    DUMMY_WEAPON("dummy_weapon", 0),
-    HEALTH(20, "health");
-
+    HEALTH(20, "health"),
+    CAT(5, "cat");
     private int damage;
     private final String name;
     private int health;

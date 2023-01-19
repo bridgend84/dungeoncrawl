@@ -41,6 +41,9 @@ public class Player extends Actor {
                 displayAlert();
             }
         }
+        if (getCell().getType().equals(CellType.TOILET)) {
+            flushToilet();
+        }
     }
 
     public void openTheDoor(Cell doorCell) {
@@ -96,6 +99,13 @@ public class Player extends Actor {
         int potion = health.getHealth();
         this.setHealth(getHealth() + potion);
         getCell().removeItem(getCell().getItem());
+    }
+
+    public void flushToilet() {
+        Alert flush = new Alert(Alert.AlertType.NONE,
+                "Flush...Just what I needed...",
+                ButtonType.FINISH);
+        flush.showAndWait();
     }
 
 }

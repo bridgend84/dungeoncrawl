@@ -13,7 +13,9 @@ public enum CellType {
     CONCRETE("concrete", true),
     CONCRETE_DOWN("concrete-down", true),
     TOILET("toilet", true),
-    HEALTH("health", true);
+    HEALTH("health", true),
+    SEA("sea", false),
+    PURPLE_FLOOR("purple-floor", true);
 
     private final String tileName;
     private final boolean canPlayerMoveOn;
