@@ -5,8 +5,8 @@ public enum ItemType {
     COMPUTER("computer"),
     INGRAM("ingram"),
     SHOTGUN("shotgun"),
-    HEALTH("health");
-
+    HEALTH("health"),
+    CAT("cat");
     private final String name;
 
     ItemType(String name) {
