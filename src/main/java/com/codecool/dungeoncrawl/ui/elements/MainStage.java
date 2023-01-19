@@ -32,7 +32,7 @@ public class MainStage {
         this.statusPane.setHealthValue(text);
     }
 
-    public void setStrenghtLabelText(String text) {
+    public void setStrengthLabelText(String text) {
         this.statusPane.setStrengthValue(text);
     }
 

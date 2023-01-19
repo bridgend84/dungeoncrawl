@@ -71,7 +71,7 @@ public class UI {
             }
         }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
-        mainStage.setStrenghtLabelText(logic.getPlayerStrenght());
+        mainStage.setStrengthLabelText(logic.getPlayerStrength());
         mainStage.setPlayerInventoryList(getPlayerInventoryAsStringList());
     }
 

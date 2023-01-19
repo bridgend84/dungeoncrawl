@@ -14,7 +14,7 @@
 #Gg.......#ttwww#......#gg#w&#........tg
 #ggg.......#tttww#....#&#g#&#......t.gtg
 ttg.........#titww#..#w&#g##......ttggtg
-tttgG........#d###gg#w&&#g#.....tttttgtg
+tttgG........#d###gg#w&&#g#.....tttttdtd
 ttttg.........ggggg#www&#g....tttGggHgtg
 ttttgg.........####wPPww#......ttgtttttg
 tttgM.......g...#tPPPcP#.......ttHtgSggg

@@ -41,7 +41,7 @@ public class Player extends Actor {
         if (nextCell.getType().equals(CellType.DOOR)) {
             if (items.stream().anyMatch(item -> item.getItemType().equals(ItemType.COMPUTER))) {
                 while (!checkPassword().equalsIgnoreCase(DOOR_PASS)) {
-                    System.out.println("nono");
+                    System.out.println("Nono!");
                 }
                 openTheDoor(nextCell);
             } else {
