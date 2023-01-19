@@ -6,7 +6,11 @@ public enum ItemType {
     INGRAM("ingram"),
     SHOTGUN("shotgun"),
     HEALTH("health"),
-    CAT("cat");
+    CAT_TRICKY("Tricky"),
+    CAT_BOGYO("Bogyó"),
+    CAT_MASNI("Masni"),
+    CAT_NYAFI("Nyafi");
+
     private final String name;
 
     ItemType(String name) {
