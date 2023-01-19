@@ -3,11 +3,12 @@ package com.codecool.dungeoncrawl.data.items;
 import com.codecool.dungeoncrawl.data.Cell;
 
 public class Health extends Item {
-    private int health;
+    public static final int HEALTH = 20;
+    private final int health;
 
-    public Health(ItemType itemType, Cell cell) {
-        super(itemType, cell);
-        this.health = itemType.getHealth();
+    public Health(Cell cell) {
+        super(ItemType.HEALTH, cell);
+        this.health = HEALTH;
     }
 
     @Override
