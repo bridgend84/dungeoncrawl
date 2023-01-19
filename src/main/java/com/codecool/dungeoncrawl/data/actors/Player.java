@@ -8,13 +8,17 @@ import com.codecool.dungeoncrawl.data.items.ItemType;
 import com.codecool.dungeoncrawl.data.items.Weapon;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class Player extends Actor {
     public static final int PLAYER_HEALTH = 100;
     public static final int PLAYER_STRENGTH = 5;
+
+    public static final String DOOR_PASS = "587";
 
     private final Set<Item> items;
 
@@ -36,6 +40,10 @@ public class Player extends Actor {
         Cell nextCell = getCell().getNeighbor(dx, dy);
         if (nextCell.getType().equals(CellType.DOOR)) {
             if (items.stream().anyMatch(item -> item.getItemType().equals(ItemType.COMPUTER))) {
+                checkPassword();
+                while (!checkPassword().equalsIgnoreCase(DOOR_PASS)) {
+                    checkPassword();
+                }
                 openTheDoor(nextCell);
             } else {
                 displayAlert();
@@ -106,6 +114,14 @@ public class Player extends Actor {
                 "Flush...Just what I needed...",
                 ButtonType.FINISH);
         flush.showAndWait();
+    }
+
+    public String checkPassword() {
+        TextInputDialog askForPassword = new TextInputDialog("***");
+        askForPassword.setTitle("-- Door hacking --");
+        askForPassword.setHeaderText("Enter door key:");
+        Optional<String> result = askForPassword.showAndWait();
+        return result.get();
     }
 
 }

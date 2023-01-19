@@ -12,13 +12,14 @@ public class StatusPane {
     public static final int RIGHT_PANEL_PADDING = 10;
     private GridPane ui;
     private Label healthValueLabel;
-
     private Label inventoryLabel;
     ListView<String> inventoryList;
+    private Label passwordText;
 
     public StatusPane() {
         ui = new GridPane();
         healthValueLabel = new Label();
+        passwordText = new Label("You can find the password\nfor the doors on the\ncards on the map! ;-)");
         inventoryList = new ListView<>();
         inventoryLabel = new Label("Inventory: ");
     }
@@ -31,6 +32,7 @@ public class StatusPane {
         ui.add(healthValueLabel, 0, 0);
         ui.add(inventoryLabel, 0, 1);
         ui.add(inventoryList, 0, 2);
+        ui.add(passwordText, 0, 3);
         inventoryList.setPrefHeight(180);
         inventoryList.setPrefWidth(120);
 

@@ -45,10 +45,15 @@ public class Tiles {
         tileMap.put("concrete-down", new Tile(19, 2));
         tileMap.put("toilet", new Tile(12, 10));
         tileMap.put("health", new Tile(15, 31));
-        tileMap.put("cat", new Tile(30, 7));
         tileMap.put("sea", new Tile(8, 5));
         tileMap.put("purple-floor", new Tile(23, 27));
-
+        tileMap.put("five", new Tile(24, 16));
+        tileMap.put("seven", new Tile(26, 16));
+        tileMap.put("eight", new Tile(27, 16));
+        tileMap.put("Tricky", new Tile(30, 7));
+        tileMap.put("Bogyó", new Tile(29, 7));
+        tileMap.put("Masni", new Tile(28, 7));
+        tileMap.put("Nyafi", new Tile(27, 7));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
