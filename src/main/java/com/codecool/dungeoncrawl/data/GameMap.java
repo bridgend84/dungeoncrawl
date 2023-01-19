@@ -4,7 +4,6 @@ import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.items.Cat;
 import com.codecool.dungeoncrawl.data.items.Item;
-import com.codecool.dungeoncrawl.data.items.ItemType;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,6 +35,10 @@ public class GameMap implements GameMapModifier {
 
     public void addMovableMonsters(Actor actor) {
         movableMonsters.add(actor);
+    }
+
+    private void removeMovableMonster(Actor actor) {
+        movableMonsters.remove(actor);
     }
 
     public void setMovableMonsters() {
@@ -87,7 +90,13 @@ public class GameMap implements GameMapModifier {
                 .flatMap(Arrays::stream)
                 .filter(cell -> cell.getActor() != null)
                 .filter(cell -> cell.getActor().getHealth() <= 0)
-                .forEach(cell -> cell.setActor(null));
+                .forEach(cell -> {
+                    if (movableMonsters.contains(cell.getActor())) {
+                        removeMovableMonster(cell.getActor());
+                    }
+                    cell.setActor(null);
+                });
+
     }
 
     public boolean isAllCatsCollected() {
