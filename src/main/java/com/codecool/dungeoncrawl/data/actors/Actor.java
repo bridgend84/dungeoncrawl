@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public abstract class Actor implements Drawable {
     private final UUID id;
-    private Cell cell;
+    protected Cell cell;
     private int health;
     private int strength;
     protected Random random;
-    private boolean isRandomMovable;
+    private final boolean isRandomMovable;
 
     public Actor(Cell cell, int health, int strength, boolean isRandomMovable) {
         this.id = UUID.randomUUID();
@@ -43,7 +43,7 @@ public abstract class Actor implements Drawable {
         move(currentMove.get(0), currentMove.get(1));
     }
 
-    private void attackEnemy(Actor enemy) {
+    protected void attackEnemy(Actor enemy) {
         enemy.takeDamage(this.strength);
         this.takeDamage(enemy.strength);
     }
