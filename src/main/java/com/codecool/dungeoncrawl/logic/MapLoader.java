@@ -102,6 +102,17 @@ public class MapLoader {
                             Item health = new Health(cell);
                             cell.setItem(health);
                         }
+                        case 'C' -> {
+                            cell.setType(CellType.FLOOR);
+                            Item cat = new Cat(ItemType.CAT, cell);
+                            cell.setItem(cat);
+                        }
+                        case '&' -> {
+                            cell.setType(CellType.SEA);
+                        }
+                        case 'P' -> {
+                            cell.setType(CellType.PURPLE_FLOOR);
+                        }
                         default -> {
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                         }

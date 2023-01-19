@@ -45,6 +45,10 @@ public class Tiles {
         tileMap.put("concrete-down", new Tile(19, 2));
         tileMap.put("toilet", new Tile(12, 10));
         tileMap.put("health", new Tile(15, 31));
+        tileMap.put("cat", new Tile(30, 7));
+        tileMap.put("sea", new Tile(8, 5));
+        tileMap.put("purple-floor", new Tile(23, 27));
+
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
