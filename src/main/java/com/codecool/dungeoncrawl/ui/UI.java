@@ -22,11 +22,9 @@ import java.util.TimerTask;
 public class UI extends TimerTask {
     private final Canvas canvas;
     private final GraphicsContext context;
-
     private final MainStage mainStage;
     private final GameLogic logic;
     private final Set<KeyHandler> keyHandlers;
-
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(
@@ -55,7 +53,6 @@ public class UI extends TimerTask {
         checkWinLoseCondition();
     }
 
-
     public void refresh() {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -75,7 +72,6 @@ public class UI extends TimerTask {
         mainStage.setPlayerInventoryList(getPlayerInventoryAsStringList());
     }
 
-    //move this to main stage
     public ObservableList<String> getPlayerInventoryAsStringList() {
         ObservableList<String> inventoryList = FXCollections.observableArrayList();
         Set<Item> inventory = logic.getPlayerInventory();
@@ -103,8 +99,7 @@ public class UI extends TimerTask {
     private void checkWinLoseCondition() {
         if (logic.getMap().isPlayerDead()) {
             alert("GAME OVER");
-        }
-        else if (logic.getMap().isAllMonstersDead()) {
+        } else if (logic.getMap().isAllMonstersDead() || logic.getMap().isAllCatsCollected()) {
             alert("WIN!");
         }
     }

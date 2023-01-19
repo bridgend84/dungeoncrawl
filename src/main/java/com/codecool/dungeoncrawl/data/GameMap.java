@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.items.ItemType;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -72,6 +73,13 @@ public class GameMap implements GameMapModifier {
                 .filter(cell -> cell.getActor() != null)
                 .filter(cell -> cell.getActor().getHealth() <= 0)
                 .forEach(cell -> cell.setActor(null));
+    }
+
+    public boolean isAllCatsCollected() {
+        return Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .filter(cell -> cell.getItem() != null)
+                .noneMatch(cell -> cell.getItem().getItemType().equals(ItemType.CAT));
     }
 
     public int getWidth() {
