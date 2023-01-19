@@ -99,6 +99,7 @@ public class UI {
     public void moveMonsters() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), ev -> {
             logic.getMap().moveMonsters();
+            logic.getMap().removeDeadActors();
             refresh();
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
